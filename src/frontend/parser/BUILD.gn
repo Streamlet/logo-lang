@@ -1,0 +1,33 @@
+action("bison") {
+  script = "//tool/cmd.py"
+  sources = [ "parser.y" ]
+  args = [
+    "bison",
+    "-ld",
+    "-o",
+    rebase_path("$target_gen_dir/parser.tab.cc", "$root_build_dir"),
+    rebase_path("parser.y", "$root_build_dir"),
+  ]
+  outputs = [
+    "$target_gen_dir/parser.tab.cc",
+    "$target_gen_dir/parser.tab.hh",
+  ]
+}
+
+source_set("parser") {
+  configs += [ "//build_config" ]
+
+  sources = [
+    "$target_gen_dir/parser.tab.cc",
+    "$target_gen_dir/parser.tab.hh",
+    "ast.cc",
+    "ast.h",
+    "parser.cc",
+    "parser.h",
+  ]
+
+  deps = [
+    ":bison",
+    "//src/frontend/lexer:flex",
+  ]
+}

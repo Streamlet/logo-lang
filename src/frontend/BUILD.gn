@@ -1,3 +1,6 @@
 source_set("frontend") {
-  sources = [ "placeholder.cc" ]
+  deps = [
+    "lexer",
+    "parser",
+  ]
 }

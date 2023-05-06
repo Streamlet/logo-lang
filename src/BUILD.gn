@@ -1,4 +1,6 @@
 executable("logoc") {
+  configs += [ "//build_config" ]
+
   sources = [ "main.cc" ]
 
   deps = [

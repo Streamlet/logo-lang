@@ -1,0 +1,14 @@
+config("build_config") {
+  if (is_win) {
+    cflags_c = [ "/std:c17" ]
+    cflags_cc = [ "/std:c++17" ]
+  } else {
+    cflags_c = [ "-std=c17" ]
+    cflags_cc = [ "-std=c++17" ]
+  }
+
+  include_dirs = [
+    "//src",
+    "$root_gen_dir/src",
+  ]
+}

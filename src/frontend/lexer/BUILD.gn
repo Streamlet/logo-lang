@@ -1,0 +1,22 @@
+action("flex") {
+  script = "//tool/cmd.py"
+  sources = [ "lexer.l" ]
+  args = [
+    "flex",
+    "-L",
+    "-o" + rebase_path("$target_gen_dir/lexer.yy.cc", "$root_build_dir"),
+    rebase_path("lexer.l", "$root_build_dir"),
+  ]
+  outputs = [ "$target_gen_dir/lexer.yy.cc" ]
+}
+
+source_set("lexer") {
+  configs += [ "//build_config" ]
+
+  sources = [ "$target_gen_dir/lexer.yy.cc" ]
+
+  deps = [
+    ":flex",
+    "//src/frontend/parser:bison",
+  ]
+}
