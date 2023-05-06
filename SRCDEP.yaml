@@ -1,0 +1,4 @@
+DEPS:
+  build:
+    GIT_REPO: https://github.com/Streamlet/gn_toolchain.git
+    GIT_TAG: master

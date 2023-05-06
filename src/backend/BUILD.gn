@@ -1,0 +1,3 @@
+source_set("backend") {
+  sources = [ "placeholder.cc" ]
+}

@@ -1,0 +1,8 @@
+executable("logoc") {
+  sources = [ "main.cc" ]
+
+  deps = [
+    "backend",
+    "frontend",
+  ]
+}
