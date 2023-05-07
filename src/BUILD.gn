@@ -1,6 +1,13 @@
 executable("logoc") {
   configs += [ "//build_config" ]
 
+  if (is_win) {
+    configs += [
+      "//build/config/win:static_runtime",
+      "//build/config/win:console_subsystem_xp",
+    ]
+  }
+
   sources = [ "main.cc" ]
 
   deps = [
