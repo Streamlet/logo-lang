@@ -13,14 +13,11 @@ action("flex") {
 source_set("lexer") {
   configs += [ "//build_config" ]
 
-  if (is_win) {
-    include_dirs = [ "include" ]
-    cflags = [ "/wd5033" ]
-  }
-
   sources = [ "$target_gen_dir/lexer.yy.cc" ]
 
   if (is_win) {
+    include_dirs = [ "include" ]
+    cflags = [ "/wd5033" ]
     sources += [ "include/unistd.h" ]
   }
 
