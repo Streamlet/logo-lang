@@ -15,9 +15,8 @@ source_set("lexer") {
 
   if (is_win) {
     include_dirs = [ "include" ]
+    cflags = [ "/wd5033" ]
   }
-
-  cflags = [ "/wd5033" ]
 
   sources = [ "$target_gen_dir/lexer.yy.cc" ]
 
