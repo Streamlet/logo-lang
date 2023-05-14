@@ -13,13 +13,34 @@
 %}
 
 number      ([0-9]+|[0-9]*\.[0-9]+)([Ee][+-]?[0-9]+)?
+string      ([A-Za-z_0-9]*\"(\\\"|\\\\|[^\\\"])*\")*
 id          [A-Za-z_][A-Za-z_0-9]*
 
 %%
 
 " "         ;
 \t          ;
-\n          { return YYEOF; }
+\n          { return EOL; }
+";"          { return EOL; }
+
+"to"        { return TO; }
+"end"       { return END; }
+
+"if"        { return IF; }
+"repeat"    { return REPEAT; }
+
+"word"      { return WORD; }
+
+"["         { return LBRACKET; }
+"]"         { return RBRACKET; }
+":"         { return COLON; }
+
+"="         { return EQ; }
+"!="        { return NEQ; }
+"<"         { return LT; }
+">"         { return GT; }
+"<="        { return LTE; }
+">="        { return GTE; }
 
 "+"         { return ADD; }
 "-"         { return SUB; }
@@ -33,7 +54,8 @@ id          [A-Za-z_][A-Za-z_0-9]*
 "e"         { yylval.dval = M_E; return NUM; }
 "pi"        { yylval.dval = M_PI; return NUM; }
 {number}    { yylval.dval = atof(yytext); return NUM; }
-{id}        { yylval.sval.str = yytext; yylval.sval.len = yyleng; return FUNC; }
+{id}        { yylval.sval.str = yytext; yylval.sval.len = yyleng; return ID; }
+{string}    { yylval.sval.str = yytext; yylval.sval.len = yyleng; return STRING; }
 
 .           { return YYUNDEF; }
 

@@ -24,6 +24,8 @@ source_set("parser") {
     "ast.h",
     "parser.cc",
     "parser.h",
+    "visualize.cc",
+    "visualize.h",
   ]
 
   deps = [
